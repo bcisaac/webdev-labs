@@ -4,21 +4,24 @@ body * {
 
 body {
     font-family: 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    display: block;
+}
+
+section {
     border-style: solid;
     width: 500px;
     margin: 0 auto;
     border-color: grey;
     border-width: 1px;
+    padding-bottom: 20px
 }
 
-.image {
+section img {
     height: 500px;
-    width: 504px;
-    margin-left: -4px;
+    width: 100%;
+    /* margin-left: -4px; */
 }
 
-h2, p, button {
+section h2, section p, section button {
     margin: 20px;
     font: Helvetica;
 }
