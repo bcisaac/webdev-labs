@@ -1,0 +1,28 @@
+body * {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display: block;
+    border-style: solid;
+    width: 500px;
+    margin: 0 auto;
+    border-color: grey;
+    border-width: 1px;
+}
+
+.image {
+    height: 500px;
+    width: 504px;
+    margin-left: -4px;
+}
+
+h2, p, button {
+    margin: 20px;
+    font: Helvetica;
+}
+
+/*
+Add some style blocks below this line to style the card.
+*/
