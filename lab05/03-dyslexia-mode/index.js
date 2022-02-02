@@ -12,10 +12,11 @@ const initPage = () => {
 
   const toggle = document.querySelector("#dyslexia-toggle");
   if (isPressed) {
-    toggle.setAttribute.setAttribute('aria-pressed', 'true');
+    toggle.setAttribute('aria-pressed', 'true');
   }
 
-  toggle.addEventListener('click', toggleEventHandler);
+  toggle.addEventListener('click', toggleEventHandler);  
+
 };
 
 const toggleEventHandler = (ev) => {
