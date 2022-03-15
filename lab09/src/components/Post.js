@@ -1,12 +1,13 @@
 import React from 'react';
 import Like from './Like.js'
 import Bookmark from './Bookmark.js'
+import AddComment from './AddComment.js'
+import Comments from './Comments.js'
 import { getHeaders } from '../utils.js';
 
 class Post extends React.Component { 
     constructor(props){
         super(props)
-        console.log('Post component created')
         this.requeryPost = this.requeryPost.bind(this)
         this.state = {
             post: this.props.model
@@ -23,18 +24,22 @@ class Post extends React.Component {
         fetch('api/posts/' + this.state.post.id, {
             method: "GET",
             headers: {
-                'X-CSRF-TOKEN': getHeaders()['X-CSRF-TOKEN']
+                // 'Authorization': getHeaders()['Authorization']
+                headers: getHeaders()
             }
+            
+
         }).then(response => response.json())
         .then(data => {
             this.setState({post: data})
-            console.log(data.current_user_like_id ? 'likeId exists' : 'likeId doesn\'nt exist')
-            console.log(data.current_user_bookmark_id ? 'bookmark exists' : 'bookmark doesn\'nt exist')
+            console.log(data.current_user_like_id ? 'likeId exists' : 'likeId doesn\'t exist')
+            console.log(data.current_user_bookmark_id ? 'bookmark exists' : 'bookmark doesn\'t exist')
         })
     }
 
     render () {
         const post = this.state.post
+        console.log(post)
         return (
             <section className="card">
                 <div className="header">
@@ -49,20 +54,37 @@ class Post extends React.Component {
                     height="300" />
                 
                 <div className="info">
-                    <div>
+                    <div className = "buttons">
+                        <div>
                         <Like 
                         likeId = {post.current_user_like_id}
                         postId = {post.id}
                         requeryPost={this.requeryPost}
                         ></Like>
+                        </div>
                         <Bookmark
                         bookmarkId = {post.current_user_bookmark_id}
                         postId = {post.id}
                         requeryPost={this.requeryPost}
                         ></Bookmark>
                     </div>
-                    <p>{ post.caption }</p>
+                    <p className="likes">
+                        <strong>{post.likes.length}</strong>
+                    </p>
+                    <div className="caption">
+                        <p>
+                            <strong>{post.user.username}</strong>
+                            {post.caption}
+                        </p>
+                    </div>
+                    {/* <Comments
+                        comments={post.comments}>
+                    </Comments> */}
                 </div>
+                {/* <AddComment
+                postId={post.id}
+                requeryPost={this.requeryPost}>
+                </AddComment> */}
             </section> 
         )
     }

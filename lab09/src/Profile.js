@@ -7,19 +7,11 @@ class Profile extends React.Component {
         this.state = {}
     }
 
-    componentDidMount() {
-      console.log('Invoked immediately')
-    }
-
     render () {
-        if (!this.state.posts) {
-            return (
-                <div>Before profile fetched from server</div>
-            )
-        }
         return (
             <div>
-                {/* code */}
+                <img className="pic" src={this.props.user.thumb_url}></img>
+                <h2>{this.props.user.username}</h2>
             </div>
         )
     }

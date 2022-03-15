@@ -4,27 +4,51 @@ import Posts from './Posts'
 import Profile from './Profile'
 import Stories from './Stories'
 import Suggestions from './Suggestions'
+import { getHeaders } from './utils';
 
-class App extends React.Component {  
+class App extends React.Component { 
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            user: {}
+        }
+        this.getProfile()
+    }
+    
+    getProfile() {
+        fetch('/api/profile/', {
+            method: "GET",
+            headers: {
+                // 'Authorization': getHeaders()['Authorization']
+                headers: getHeaders()
+            }
+        })
+        .then(response => response.json())
+        .then(user => {
+            console.log(user)
+            this.setState({user: user})
+        }
+        )
+    }
 
     render () {
+
         return (
             <div>
 
             <nav className="main-nav">
                 <h1>Photo App</h1>
-                <NavBar></NavBar>
+                <NavBar user={this.state.user}></NavBar>
             </nav>
 
             <aside>
                 <header>
-                    <Profile></Profile>
+                    <Profile user={this.state.user}></Profile>
                 </header>
                 <div className="suggestions">
                     <p className="suggestion-text">Suggestions for you</p>
-                    <div>
-                        <Suggestions></Suggestions>
-                    </div>
+                    <Suggestions></Suggestions>
                 </div>
             </aside>
 

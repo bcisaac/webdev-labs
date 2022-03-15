@@ -8,7 +8,7 @@ class Stories extends React.Component {
     }
 
     componentDidMount() {
-      console.log('Invoked immediately')
+    //   console.log('Invoked immediately')
     }
 
     render () {

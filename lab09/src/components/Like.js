@@ -57,7 +57,8 @@ class Like extends React.Component {
         <button
             onClick={() => this.likeUnlike(likeId)}
             checked={likeId ? true : false}
-            label="Like">
+            label="Like"
+            className='like'>
             <i className={likeId ? 'fas fa-heart' : 'far fa-heart'}></i>
         </button>
         )

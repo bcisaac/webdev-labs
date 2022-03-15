@@ -8,15 +8,8 @@ class Posts extends React.Component {
         this.state = {
             posts: []
         }
-        console.log('Posts component created')
         this.getPosts()
     }
-    
-    // componentDidMount() {
-    //   console.log('Invoked immediately')
-    // }
-
-
 
     getPosts() {
         fetch('/api/posts/', {
@@ -32,14 +25,12 @@ class Posts extends React.Component {
     }
 
     render () {
-        console.log('posts rendering')
-        console.log(this.state.posts)
         return (
             <div id="posts">
-                {this.state.posts.length >0 ? this.state.posts.map(post => {
+                {this.state.posts.length >0 ? 
+                this.state.posts.map(post => {
                     return <Post key={post.id} model={post} />
                 }) : <div>Need new token</div>}
-                {/* Posts */}
             </div>
         )
     }
