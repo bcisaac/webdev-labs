@@ -32,14 +32,13 @@ class Post extends React.Component {
         }).then(response => response.json())
         .then(data => {
             this.setState({post: data})
-            console.log(data.current_user_like_id ? 'likeId exists' : 'likeId doesn\'t exist')
-            console.log(data.current_user_bookmark_id ? 'bookmark exists' : 'bookmark doesn\'t exist')
+            console.log('requeried')
         })
     }
 
     render () {
         const post = this.state.post
-        console.log(post)
+        // console.log(post)
         return (
             <section className="card">
                 <div className="header">
@@ -61,6 +60,8 @@ class Post extends React.Component {
                         postId = {post.id}
                         requeryPost={this.requeryPost}
                         ></Like>
+                        <i className={'far fa-comment'}></i>
+                        <i className={'far fa-paper-plane'}></i>
                         </div>
                         <Bookmark
                         bookmarkId = {post.current_user_bookmark_id}
@@ -69,22 +70,23 @@ class Post extends React.Component {
                         ></Bookmark>
                     </div>
                     <p className="likes">
-                        <strong>{post.likes.length}</strong>
+                        <strong>{post.likes.length >1 || post.likes.length === 0 ? post.likes.length + " likes" : post.likes.length + " like"}</strong>
                     </p>
                     <div className="caption">
                         <p>
                             <strong>{post.user.username}</strong>
                             {post.caption}
                         </p>
+                        <p className="timestamp">{post.display_time}</p>
                     </div>
-                    {/* <Comments
+                    <Comments
                         comments={post.comments}>
-                    </Comments> */}
+                    </Comments>
                 </div>
-                {/* <AddComment
+                <AddComment
                 postId={post.id}
                 requeryPost={this.requeryPost}>
-                </AddComment> */}
+                </AddComment>
             </section> 
         )
     }

@@ -1,5 +1,4 @@
 import React from 'react';
-import {getHeaders} from './utils.js'
 
 class Profile extends React.Component { 
     constructor(props) {
@@ -10,7 +9,7 @@ class Profile extends React.Component {
     render () {
         return (
             <div>
-                <img className="pic" src={this.props.user.thumb_url}></img>
+                <img className="pic" src={this.props.user.thumb_url} alt="Your profile pic"></img>
                 <h2>{this.props.user.username}</h2>
             </div>
         )

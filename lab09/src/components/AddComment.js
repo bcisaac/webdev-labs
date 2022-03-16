@@ -17,7 +17,8 @@ class AddComment extends React.Component {
         })
     }
 
-    postComment() {
+    postComment(event) {
+        event.preventDefault()
         const postData = {
             "post_id": this.props.postId,
             "text": this.state.value
@@ -29,19 +30,15 @@ class AddComment extends React.Component {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            console.log(data)
             this.props.requeryPost()
-            console.log('Posted')
-        });
-        
+        }); 
     }
-
-
 
     render () {
         
         return (
-            <form className='add-comment'>
+            <form className='add-comment' onSubmit={this.postComment}>
                 <div className='input-holder'>
                     <input className='comment-textbox'
                         aria-label='Add a comment'
@@ -50,7 +47,8 @@ class AddComment extends React.Component {
                     </input>
                 </div>
                 <button className='link'
-                    onClick={this.postcomment}>
+                    type="submit"
+                    onClick={this.postComment}>
                     Post
                 </button>
             </form>

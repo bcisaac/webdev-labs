@@ -4,7 +4,7 @@ import {getHeaders} from '../utils.js'
 class Like extends React.Component { 
     constructor(props){
         super(props)
-        this.likeUnlike = this.likeUnlike.bind(this)
+        this.toggleLike = this.toggleLike.bind(this)
         this.likePost = this.likePost.bind(this)
         this.unLikePost = this.unLikePost.bind(this)
     }
@@ -39,7 +39,7 @@ class Like extends React.Component {
         });
     }
 
-    likeUnlike(likeId) {
+    toggleLike(likeId) {
         console.log('button-clicked')
 
         if (likeId) {
@@ -55,8 +55,10 @@ class Like extends React.Component {
         const likeId = this.props.likeId
         return (
         <button
-            onClick={() => this.likeUnlike(likeId)}
+            onClick={() => this.toggleLike(likeId)}
             checked={likeId ? true : false}
+            role="switch"
+            aria-checked={likeId ? true : false}
             label="Like"
             className='like'>
             <i className={likeId ? 'fas fa-heart' : 'far fa-heart'}></i>

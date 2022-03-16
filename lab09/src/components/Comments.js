@@ -1,5 +1,18 @@
 import React from 'react';
-import { getHeaders } from '../utils.js';
+
+function Comment(props) {
+    return (
+        <div key={props.comment.id}>
+            <p>
+            <strong>{props.comment.user.username}</strong>
+            {props.comment.text}
+            </p>
+            <p className='timestamp'>
+            {props.comment.display_time}
+            </p>
+        </div>
+    )
+}
 
 class Comments extends React.Component {
     constructor(props){
@@ -9,21 +22,33 @@ class Comments extends React.Component {
     }
 
     render () {
+        // console.log(this.props.comments ? this.props.comments[0] : 'no comments')
+        // console.log(this.props.comments)
+        const comments = this.props.comments
+        // console.log(comments)
 
-        const a_comment = this.props.comments[0]
-        return (
-            <div className="comments">
-            <div>
-                <p>
-                <strong>{a_comment.user.username}</strong>
-                {a_comment.text}
-                </p>
-                <p className='timestamp'>
-                {a_comment.display_time}
-                </p>
-            </div>
-            </div>
-        )
+        if (comments.length===1) {
+            return (
+                <div className='comments'>
+                    <Comment comment={comments[comments.length-1]}></Comment>
+                </div>
+            )
+        } else if (comments.length>1) {
+            return (
+                <div>
+                    <button className='link'>
+                        {'View all ' + comments.length + " comments"}
+                    </button>
+                    <Comment comment={comments[comments.length-1]}></Comment>
+                </div>
+            )
+        } else {
+            return (
+                <div>
+                    No comments
+                </div>
+            )
+        }
     }
 }
 

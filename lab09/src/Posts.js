@@ -25,6 +25,7 @@ class Posts extends React.Component {
     }
 
     render () {
+        
         return (
             <div id="posts">
                 {this.state.posts.length >0 ? 
