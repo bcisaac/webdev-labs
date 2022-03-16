@@ -9,6 +9,7 @@ class AddComment extends React.Component {
         }
         this.handleChange = this.handleChange.bind(this)
         this.postComment = this.postComment.bind(this)
+        this.formRef = React.createRef()
     }
 
     handleChange(event) {
@@ -32,7 +33,9 @@ class AddComment extends React.Component {
         .then(data => {
             console.log(data)
             this.props.requeryPost()
-        }); 
+        })
+        
+        this.formRef.current.focus()
     }
 
     render () {
@@ -43,7 +46,8 @@ class AddComment extends React.Component {
                     <input className='comment-textbox'
                         aria-label='Add a comment'
                         placeholder='Add a comment...'
-                        onChange={this.handleChange}>
+                        onChange={this.handleChange}
+                        ref={this.formRef}>
                     </input>
                 </div>
                 <button className='link'
